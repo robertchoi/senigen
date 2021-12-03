@@ -14,6 +14,7 @@ void setup() {
 
   
  pinMode(relay_control, OUTPUT);
+ digitalWrite(relay_control, HIGH);
 
 
  lcd.init();                      // initialize the lcd
@@ -96,13 +97,18 @@ void loop() {
   lcd.setCursor(2,1);
   lcd.print("O3 : " + tempStr);
   Serial.println("O3 : " + tempStr);
-  if(ppm_value2 > OFFSET_VALUE)
+  if(ppm_value > OFFSET_VALUE)
   {
-    digitalWrite(relay_control, HIGH);
+        digitalWrite(relay_control, LOW);
+    Serial.println("relay control low");
+    
+
   }
   else 
   {
-    digitalWrite(relay_control, LOW);
+
+    digitalWrite(relay_control, HIGH);
+    Serial.println("relay control high");
   }
 
   delay(2000);
